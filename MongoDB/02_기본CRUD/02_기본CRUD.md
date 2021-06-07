@@ -1,6 +1,6 @@
 ### 삽입
 
-```json
+```
 > db.users.insert({username: "jones"})
 WriteResult({ "nInserted" : 1 })
 > db.users.insert({username: "smith"})
@@ -9,7 +9,7 @@ WriteResult({ "nInserted" : 1 })
 
 ### ID 필드
 
-```json
+```
 > db.users.count() 
 2
 > db.users.find()
@@ -21,7 +21,7 @@ WriteResult({ "nInserted" : 1 })
 
 ### AND 연산자
 
-```json
+```
 // 여러개의 필드를 명시하여 and를 할수 있다.
 > db.users.find({_id: ObjectId("60b3990d69c9e31f4cf14749"), username: "jones"}) 
 
@@ -34,7 +34,7 @@ WriteResult({ "nInserted" : 1 })
 
 ### OR 연산자
 
-```json
+```
 > db.users.find({$or: [
 ... {username: "smith"},
 ... {username: "jones"}
@@ -46,7 +46,7 @@ WriteResult({ "nInserted" : 1 })
 - 모든 업데이트 쿼리는 최소 두 개의 매개변수가 필요하다.
 - $set 연산자는 단일 필드를 명시된 값으로 설정한다.
 
-```json
+```
 > db.users.update({username: "smith"}, {$set:{country: "Canada"}})
 WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 
@@ -60,7 +60,7 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 
 - 이는 첫번째 도큐먼트가 오직 매칭을 위해서만 사용되었기 때문이다.
 
-  ```json
+  ```
   > db.users.update({username: "smith"}, {country: "Canada"})
   WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
   
@@ -70,7 +70,7 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 
   - 값을 지우기 위해서는 $unset연산자를 쓸 수 있다.
 
-    ```json
+    ```
     > db.users.update({username:"smith"}, {$unset:{country:1}})
     WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
     > db.users.find()
@@ -80,7 +80,7 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 
     
 
-  ```json
+  ```
   > db.users.find().pretty()
   {
   	"_id" : ObjectId("60b3977069c9e31f4cf14748"),
@@ -117,7 +117,7 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 - 따라서 $push나 $addToSet을 사용하는것이 더 낫다. 
 - 두 연산자 모두 배열에 아이템을 추가하지만 $addToSet은 값을 추가할 때 중복되지 않도록 확인한다.
 
-```json
+```
 > db.users.update({"favorites.movies": "Casablanca"},
 ... {$addToSet: {"favorites.movies": "The Maltese Falcon"}},
 ... faslse,
@@ -141,14 +141,14 @@ WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
 - 도큐먼트 지우기
 - remove는 컬렉션을 지우는것이 아니라 도큐먼트를 지우는것이다.(SQL delete와 유사하다.)
 
-```json
+```
 > db.foo.remove({})
 > db.users.remove({"favorites.cities": "Cheyenne"})
 ```
 
 ### 컬렉션 삭제
 
-```json
+```
 > db.users.drop()
 ```
 
