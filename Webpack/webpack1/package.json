@@ -15,6 +15,12 @@
     "@babel/plugin-transform-arrow-functions": "^7.14.5",
     "@babel/plugin-transform-block-scoping": "^7.14.5",
     "@babel/plugin-transform-strict-mode": "^7.14.5",
+    "@babel/preset-env": "^7.14.8",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "*",
+    "core-js": "^2.6.12",
+    "html-webpack-plugin": "^5.3.2",
+    "mini-css-extract-plugin": "^2.1.0",
     "react": "^17.0.2"
   },
   "devDependencies": {
