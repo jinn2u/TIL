@@ -1,0 +1,19 @@
+바벨은 ECMAScript5버전으로 변환할 수 있는것만 변환한다.
+하지만 promise와 같은것들은 ECMAScript5버전으로 대체할수 없지만 구현수는 있다. (core-js등을 통하여)
+
+```js
+module.exports = {
+  presets: [
+    ['@babel/preset-env', {
+      targets: {
+        chrome: '79',
+        ie: '11'
+      },
+      useBuiltIns: 'usage',
+      corejs: {
+        version: 2,
+      }
+    }]
+  ]
+}
+```
