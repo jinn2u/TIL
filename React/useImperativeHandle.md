@@ -4,7 +4,7 @@ function Profile(_, ref) {
   const [age, setAge] = useState(0)
   
   useImperativeHandle(ref, () => ({
-    addAge: value => sessionStorage(age + value),
+    addAge: value => setAge(age + value),
     getNameLength: () => name.length
   }))  
   return (
@@ -14,6 +14,7 @@ function Profile(_, ref) {
     </div>
   )
 }
+export default forwardRef(Profile)
 ```
 
 >  클래스형 컴포넌트의 부모 컴포넌트는 ref 객체를 통해 자식컴포넌트의 메서드를 호출할 수 있다. 
